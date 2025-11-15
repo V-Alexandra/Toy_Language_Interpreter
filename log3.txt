@@ -1,0 +1,121 @@
+
+Execution Stack:
+[(boolean a|(int v|(a = true|(if(a){v = 2}else{v = 3}|Print(v)))))]
+Symbol table:
+{}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[(int v|(a = true|(if(a){v = 2}else{v = 3}|Print(v)))), boolean a]
+Symbol table:
+{}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[(int v|(a = true|(if(a){v = 2}else{v = 3}|Print(v))))]
+Symbol table:
+{a=false}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[(a = true|(if(a){v = 2}else{v = 3}|Print(v))), int v]
+Symbol table:
+{a=false}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[(a = true|(if(a){v = 2}else{v = 3}|Print(v)))]
+Symbol table:
+{a=false, v=0}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[(if(a){v = 2}else{v = 3}|Print(v)), a = true]
+Symbol table:
+{a=false, v=0}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[(if(a){v = 2}else{v = 3}|Print(v))]
+Symbol table:
+{a=true, v=0}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[Print(v), if(a){v = 2}else{v = 3}]
+Symbol table:
+{a=true, v=0}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[Print(v), v = 2]
+Symbol table:
+{a=true, v=0}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[Print(v)]
+Symbol table:
+{a=true, v=2}
+Out:
+[]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
+
+Execution Stack:
+[]
+Symbol table:
+{a=true, v=2}
+Out:
+[2]
+FileTable:
+{}
+-------------------------------------------------------------------------
+
