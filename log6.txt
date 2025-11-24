@@ -1,0 +1,60 @@
+ExeStack:
+[(Ref(int) v|(new(v, 20)|Print(readHeap(v))))]
+SymTable:
+{}
+HeapTable
+{}
+Output:
+[]
+{}
+
+ExeStack:
+[(new(v, 20)|Print(readHeap(v))), Ref(int) v]
+SymTable:
+{}
+HeapTable
+{}
+Output:
+[]
+{}
+
+ExeStack:
+[(new(v, 20)|Print(readHeap(v)))]
+SymTable:
+{v=(0, int)}
+HeapTable
+{}
+Output:
+[]
+{}
+
+ExeStack:
+[Print(readHeap(v)), new(v, 20)]
+SymTable:
+{v=(0, int)}
+HeapTable
+{}
+Output:
+[]
+{}
+
+ExeStack:
+[Print(readHeap(v))]
+SymTable:
+{v=(1, int)}
+HeapTable
+{1=20}
+Output:
+[]
+{}
+
+ExeStack:
+[]
+SymTable:
+{v=(1, int)}
+HeapTable
+{1=20}
+Output:
+[20]
+{}
+
