@@ -16,7 +16,7 @@ public record AssignmentStatement(String key, IExpression expression) implements
         if (!symbolTable.containsKey(key)) {
             throw new VariableNotDefinedException();
         }
-        IValue value = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable()); //error
+        IValue value = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap()); //error
         if (symbolTable.get(key).getType().equals(value.getType())) {
             symbolTable.update(key, value);
         } else

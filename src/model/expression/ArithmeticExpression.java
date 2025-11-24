@@ -4,6 +4,7 @@ import exceptions.DivisionByZeroException;
 import exceptions.InvalidTypeException;
 import exceptions.UnknownOperatorException;
 import model.adt.MyDictionary;
+import model.adt.MyIHeap;
 import model.value.IValue;
 import model.value.IntegerValue;
 
@@ -12,14 +13,14 @@ public record ArithmeticExpression(char operator, IExpression leftOperand,
 
 
     @Override
-    public IValue evaluate(MyDictionary<String, IValue> symbolTable) throws InvalidTypeException, DivisionByZeroException, UnknownOperatorException {
+    public IValue evaluate(MyDictionary<String, IValue> symbolTable, MyIHeap heap) throws InvalidTypeException, DivisionByZeroException, UnknownOperatorException {
         IValue leftValue, rightValue;
 
-        leftValue = leftOperand.evaluate(symbolTable);
+        leftValue = leftOperand.evaluate(symbolTable, heap);
         if (!(leftValue instanceof IntegerValue(int leftInt)))
             throw new InvalidTypeException();
 
-        rightValue = rigthOperand.evaluate(symbolTable);
+        rightValue = rigthOperand.evaluate(symbolTable, heap);
         if (!(rightValue instanceof IntegerValue(int rightInt)))
             throw new InvalidTypeException();
 

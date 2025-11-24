@@ -1,6 +1,7 @@
 package model.program_state;
 
 import model.adt.MyIDictionary;
+import model.adt.MyIHeap;
 import model.adt.MyIList;
 import model.adt.MyIStack;
 import model.statement.IStatement;
@@ -15,13 +16,15 @@ public class ProgramState {
     private MyIList<IValue> out;
     private final MyIDictionary<String, BufferedReader> fileTable;
     private IStatement originalProgram;
+    private MyIHeap heap;
 
-    public ProgramState(MyIStack<IStatement> exeStack, MyIDictionary<String, IValue> symTable, MyIList<IValue> out, MyIDictionary<String, BufferedReader> fileTable, IStatement originalProgram) {
+    public ProgramState(MyIStack<IStatement> exeStack, MyIDictionary<String, IValue> symTable, MyIList<IValue> out, MyIDictionary<String, BufferedReader> fileTable, MyIHeap heap, IStatement originalProgram) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
         this.fileTable = fileTable;
         this.originalProgram = originalProgram.deepCopy();
+        this.heap = heap;
         this.exeStack.push(originalProgram);
     }
 
@@ -73,26 +76,13 @@ public class ProgramState {
         return out.toString();
     }
 
+    public MyIHeap getHeap() {
+        return heap;
+    }
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        result.append("\nExecution stack:\n");
-        result.append(this.exeStack.toString()).append("\n");
-
-        result.append("Symbol table:\n");
-        result.append(this.symTable.toString()).append("\n");
-
-        result.append("Output list:\n");
-        result.append(this.out.toString()).append("\n");
-
-        result.append("File table:\n");
-        for (Map.Entry<String, BufferedReader> entry : this.fileTable.getContent().entrySet()) {
-            result.append(entry.getKey()).append("\n");
-        }
-
-        result.append("-------------------------------------------------------------------------\n");
-        return result.toString();
+        return "ExeStack:\n" + exeStack.toString() + "\nSymTable:\n" + symTable.toString() + "\nHeapTable\n" + heap.toString() + "\nOutput:\n" + out.toString() + "\n" + fileTable.toString() + "\n";
     }
+
 }
 

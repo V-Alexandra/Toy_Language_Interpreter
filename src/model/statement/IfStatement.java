@@ -12,7 +12,7 @@ public record IfStatement(IExpression expression, IStatement thenStatement,
                           IStatement elseStatement) implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) {
-        IValue result = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable());
+        IValue result = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap());
         if (!(result instanceof BooleanValue(boolean boolVal)))
             throw new InvalidTypeException();
         IStatement chosenStatement = boolVal ? thenStatement : elseStatement;

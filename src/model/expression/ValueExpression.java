@@ -1,11 +1,12 @@
 package model.expression;
 
 import model.adt.MyDictionary;
+import model.adt.MyIHeap;
 import model.value.IValue;
 
 public record ValueExpression(IValue value) implements IExpression {
     @Override
-    public IValue evaluate(MyDictionary<String, IValue> symbolTable) {
+    public IValue evaluate(MyDictionary<String, IValue> symbolTable, MyIHeap heap) {
         return value;
     }
 
