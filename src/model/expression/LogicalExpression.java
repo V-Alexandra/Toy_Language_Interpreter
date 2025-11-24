@@ -3,6 +3,7 @@ package model.expression;
 import exceptions.InvalidTypeException;
 import exceptions.UnknownOperatorException;
 import model.adt.MyDictionary;
+import model.adt.MyIHeap;
 import model.value.BooleanValue;
 import model.value.IValue;
 
@@ -18,12 +19,12 @@ public class LogicalExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(MyDictionary<String, IValue> symbolTable) throws InvalidTypeException, UnknownOperatorException{
+    public IValue evaluate(MyDictionary<String, IValue> symbolTable, MyIHeap heap) throws InvalidTypeException, UnknownOperatorException{
         IValue leftValue, rightValue;
-        leftValue = leftOperand.evaluate(symbolTable);
+        leftValue = leftOperand.evaluate(symbolTable, heap);
         if (!(leftValue instanceof BooleanValue(boolean leftBool)))
             throw new InvalidTypeException();
-        rightValue = rightOperand.evaluate(symbolTable);
+        rightValue = rightOperand.evaluate(symbolTable, heap);
         if (!(rightValue instanceof BooleanValue(boolean rightBool)))
             throw new InvalidTypeException();
         boolean result = switch (operator) {
