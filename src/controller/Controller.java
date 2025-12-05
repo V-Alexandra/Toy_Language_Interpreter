@@ -5,13 +5,13 @@ import model.adt.MyIStack;
 import model.program_state.ProgramState;
 import model.statement.IStatement;
 import repository.IRepository;
-
 import java.io.IOException;
-import java.util.Stack;
 
 public class Controller {
     IRepository repository;
     boolean displayFlag = false;
+    private final GarbageCollector garbageCollector = new GarbageCollector();
+
     public void setDisplayFlag(boolean displayFlag) {
         this.displayFlag = displayFlag;
     }
@@ -31,10 +31,15 @@ public class Controller {
 
     public void allSteps() throws IOException {
         ProgramState program = this.repository.getCurrentState();
+        repository.emptyLogFile();
         display(program);
         repository.logProgramStateExecution(program);
         while(!program.getExeStack().isEmpty()) {
             program = oneStep(program);
+            program.getHeap().setContent(garbageCollector.safeGarbageCollector(
+                    garbageCollector.getAddrFromSymTable(program.getSymTable().getContent().values()),
+                    program.getHeap().getContent()));
+
             display(program);
             repository.logProgramStateExecution(program);
         }

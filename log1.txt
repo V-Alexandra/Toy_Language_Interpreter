@@ -1,60 +1,66 @@
+Execution Stack:
+[(v=(int);(v = 2;print(v)))]
+Symbol Table:
 
-Execution stack:
-[(int v|(v = 2|Print(v)))]
-Symbol table:
-{}
-Output list:
+Heap:
+
+Output List:
 []
-File table:
--------------------------------------------------------------------------
+File Table:
 
 
-Execution stack:
-[(v = 2|Print(v)), int v]
-Symbol table:
-{}
-Output list:
+Execution Stack:
+[(v = 2;print(v)), v=(int)]
+Symbol Table:
+
+Heap:
+
+Output List:
 []
-File table:
--------------------------------------------------------------------------
+File Table:
 
 
-Execution stack:
-[(v = 2|Print(v))]
-Symbol table:
-{v=0}
-Output list:
+Execution Stack:
+[(v = 2;print(v))]
+Symbol Table:
+v->0
+Heap:
+
+Output List:
 []
-File table:
--------------------------------------------------------------------------
+File Table:
 
 
-Execution stack:
-[Print(v), v = 2]
-Symbol table:
-{v=0}
-Output list:
+Execution Stack:
+[print(v), v = 2]
+Symbol Table:
+v->0
+Heap:
+
+Output List:
 []
-File table:
--------------------------------------------------------------------------
+File Table:
 
 
-Execution stack:
-[Print(v)]
-Symbol table:
-{v=2}
-Output list:
+Execution Stack:
+[print(v)]
+Symbol Table:
+v->2
+Heap:
+
+Output List:
 []
-File table:
--------------------------------------------------------------------------
+File Table:
 
 
-Execution stack:
+Execution Stack:
 []
-Symbol table:
-{v=2}
-Output list:
+Symbol Table:
+v->2
+Heap:
+
+Output List:
 [2]
-File table:
--------------------------------------------------------------------------
+File Table:
+
 

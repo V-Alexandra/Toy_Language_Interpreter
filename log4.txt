@@ -1,165 +1,185 @@
-
 Execution Stack:
-[(int a|(int b|(int max|(a = 10|(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max)))))))]
-Symbol table:
-{}
-Out:
-[]
-FileTable:
-{}
--------------------------------------------------------------------------
+[(a=(int);(b=(int);(max=(int);(a = 10;(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max)))))))]
+Symbol Table:
 
+Heap:
 
-Execution Stack:
-[(int b|(int max|(a = 10|(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max)))))), int a]
-Symbol table:
-{}
-Out:
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(int b|(int max|(a = 10|(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max))))))]
-Symbol table:
-{a=0}
-Out:
+[(b=(int);(max=(int);(a = 10;(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max)))))), a=(int)]
+Symbol Table:
+
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(int max|(a = 10|(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max))))), int b]
-Symbol table:
-{a=0}
-Out:
+[(b=(int);(max=(int);(a = 10;(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max))))))]
+Symbol Table:
+a->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(int max|(a = 10|(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max)))))]
-Symbol table:
-{a=0, b=0}
-Out:
+[(max=(int);(a = 10;(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max))))), b=(int)]
+Symbol Table:
+a->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(a = 10|(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max)))), int max]
-Symbol table:
-{a=0, b=0}
-Out:
+[(max=(int);(a = 10;(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max)))))]
+Symbol Table:
+a->0
+b->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(a = 10|(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max))))]
-Symbol table:
-{a=0, b=0, max=0}
-Out:
+[(a = 10;(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max)))), max=(int)]
+Symbol Table:
+a->0
+b->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max))), a = 10]
-Symbol table:
-{a=0, b=0, max=0}
-Out:
+[(a = 10;(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max))))]
+Symbol Table:
+a->0
+b->0
+max->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(b = 25|(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max)))]
-Symbol table:
-{a=10, b=0, max=0}
-Out:
+[(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max))), a = 10]
+Symbol Table:
+a->0
+b->0
+max->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max)), b = 25]
-Symbol table:
-{a=10, b=0, max=0}
-Out:
+[(b = 25;(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max)))]
+Symbol Table:
+a->10
+b->0
+max->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}|Print(max))]
-Symbol table:
-{a=10, b=25, max=0}
-Out:
+[(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max)), b = 25]
+Symbol Table:
+a->10
+b->0
+max->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[Print(max), if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}]
-Symbol table:
-{a=10, b=25, max=0}
-Out:
+[(if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a};print(max))]
+Symbol Table:
+a->10
+b->25
+max->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[Print(max), max = b]
-Symbol table:
-{a=10, b=25, max=0}
-Out:
+[print(max), if(RelationalExpression[operator=<, leftOperand=a, rightOperand=b]){max = b}else{max = a}]
+Symbol Table:
+a->10
+b->25
+max->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[Print(max)]
-Symbol table:
-{a=10, b=25, max=25}
-Out:
+[print(max), max = b]
+Symbol Table:
+a->10
+b->25
+max->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
+
+
+Execution Stack:
+[print(max)]
+Symbol Table:
+a->10
+b->25
+max->25
+Heap:
+
+Output List:
+[]
+File Table:
 
 
 Execution Stack:
 []
-Symbol table:
-{a=10, b=25, max=25}
-Out:
+Symbol Table:
+a->10
+b->25
+max->25
+Heap:
+
+Output List:
 [25]
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
+
 

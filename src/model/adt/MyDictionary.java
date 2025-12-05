@@ -4,6 +4,7 @@ package model.adt;
 import exceptions.KeyNotFoundException;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class MyDictionary<T1, T2> implements MyIDictionary<T1, T2> {
@@ -59,6 +60,10 @@ public class MyDictionary<T1, T2> implements MyIDictionary<T1, T2> {
 
     @Override
     public String toString() {
-        return dictionary.toString();
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<T1, T2> entry : dictionary.entrySet()) {
+            result.append(entry.getKey()).append("->").append(entry.getValue()).append("\n");
+        }
+        return result.toString().trim();
     }
 }

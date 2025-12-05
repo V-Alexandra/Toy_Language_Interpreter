@@ -1,121 +1,128 @@
-
 Execution Stack:
-[(boolean a|(int v|(a = true|(if(a){v = 2}else{v = 3}|Print(v)))))]
-Symbol table:
-{}
-Out:
-[]
-FileTable:
-{}
--------------------------------------------------------------------------
+[(a=(boolean);(v=(int);(a = true;(if(a){v = 2}else{v = 3};print(v)))))]
+Symbol Table:
 
+Heap:
 
-Execution Stack:
-[(int v|(a = true|(if(a){v = 2}else{v = 3}|Print(v)))), boolean a]
-Symbol table:
-{}
-Out:
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(int v|(a = true|(if(a){v = 2}else{v = 3}|Print(v))))]
-Symbol table:
-{a=false}
-Out:
+[(v=(int);(a = true;(if(a){v = 2}else{v = 3};print(v)))), a=(boolean)]
+Symbol Table:
+
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(a = true|(if(a){v = 2}else{v = 3}|Print(v))), int v]
-Symbol table:
-{a=false}
-Out:
+[(v=(int);(a = true;(if(a){v = 2}else{v = 3};print(v))))]
+Symbol Table:
+a->false
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(a = true|(if(a){v = 2}else{v = 3}|Print(v)))]
-Symbol table:
-{a=false, v=0}
-Out:
+[(a = true;(if(a){v = 2}else{v = 3};print(v))), v=(int)]
+Symbol Table:
+a->false
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(if(a){v = 2}else{v = 3}|Print(v)), a = true]
-Symbol table:
-{a=false, v=0}
-Out:
+[(a = true;(if(a){v = 2}else{v = 3};print(v)))]
+Symbol Table:
+a->false
+v->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[(if(a){v = 2}else{v = 3}|Print(v))]
-Symbol table:
-{a=true, v=0}
-Out:
+[(if(a){v = 2}else{v = 3};print(v)), a = true]
+Symbol Table:
+a->false
+v->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[Print(v), if(a){v = 2}else{v = 3}]
-Symbol table:
-{a=true, v=0}
-Out:
+[(if(a){v = 2}else{v = 3};print(v))]
+Symbol Table:
+a->true
+v->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[Print(v), v = 2]
-Symbol table:
-{a=true, v=0}
-Out:
+[print(v), if(a){v = 2}else{v = 3}]
+Symbol Table:
+a->true
+v->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
 
 
 Execution Stack:
-[Print(v)]
-Symbol table:
-{a=true, v=2}
-Out:
+[print(v), v = 2]
+Symbol Table:
+a->true
+v->0
+Heap:
+
+Output List:
 []
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
+
+
+Execution Stack:
+[print(v)]
+Symbol Table:
+a->true
+v->2
+Heap:
+
+Output List:
+[]
+File Table:
 
 
 Execution Stack:
 []
-Symbol table:
-{a=true, v=2}
-Out:
+Symbol Table:
+a->true
+v->2
+Heap:
+
+Output List:
 [2]
-FileTable:
-{}
--------------------------------------------------------------------------
+File Table:
+
 
