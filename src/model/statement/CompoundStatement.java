@@ -20,6 +20,6 @@ public record CompoundStatement(IStatement firstStatement, IStatement secondStat
 
     @Override
     public String toString() {
-        return String.format("(%s|%s)", firstStatement.toString(), secondStatement.toString());
+        return String.format("(%s;%s)", firstStatement.toString(), secondStatement.toString());
     }
 }

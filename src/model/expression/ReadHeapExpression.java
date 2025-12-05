@@ -5,18 +5,15 @@ import model.adt.MyIHeap;
 import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
+import exceptions.InvalidTypeException;
 
-public class ReadHeapExpression implements IExpression{
-    IExpression expression;
-    public ReadHeapExpression(IExpression expression) {
-        this.expression = expression;
-    }
+public record ReadHeapExpression(IExpression expression) implements IExpression {
     @Override
     public IValue evaluate(MyDictionary<String, IValue> symbolTable, MyIHeap heap) {
         IValue value = expression.evaluate(symbolTable, heap);
         if (!(value.getType() instanceof RefType))
-            throw new RuntimeException("Heap should only be accessed through references");
-        return (IValue) heap.getContent().get(((RefValue) value).getAddress());
+            throw new InvalidTypeException();
+    return (IValue) heap.getContent().get(((RefValue) value).getAddress());
     }
 
     @Override
@@ -26,6 +23,6 @@ public class ReadHeapExpression implements IExpression{
 
     @Override
     public String toString() {
-        return "readHeap(" + expression.toString() + ")";
+        return String.format("read heap(varName='%s')", expression.toString());
     }
 }

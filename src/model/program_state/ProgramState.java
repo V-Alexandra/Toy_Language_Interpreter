@@ -81,7 +81,7 @@ public class ProgramState {
     }
     @Override
     public String toString() {
-        return "ExeStack:\n" + exeStack.toString() + "\nSymTable:\n" + symTable.toString() + "\nHeapTable\n" + heap.toString() + "\nOutput:\n" + out.toString() + "\n" + fileTable.toString() + "\n";
+        return "Execution Stack:\n" + exeStack.toString() + "\nSymbol Table:\n" + symTable.toString() + "\nHeap:\n" + heap.toString() + "\nOutput List:\n" + out.toString() + "\nFile Table:\n" + fileTable.toString() + "\n";
     }
 
 }

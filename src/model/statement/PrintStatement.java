@@ -6,8 +6,9 @@ import model.expression.IExpression;
 import model.program_state.ProgramState;
 import model.value.IValue;
 
-public class PrintStatement implements IStatement{
+public class PrintStatement implements IStatement {
     IExpression expression;
+
     public PrintStatement(IExpression expression) {
         this.expression = expression;
     }
@@ -27,6 +28,6 @@ public class PrintStatement implements IStatement{
 
     @Override
     public String toString() {
-        return String.format("Print(%s)", expression.toString());
+        return String.format("print(%s)", expression.toString());
     }
 }

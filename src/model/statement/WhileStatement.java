@@ -1,4 +1,5 @@
 package model.statement;
+
 import exceptions.InvalidTypeException;
 import model.adt.MyDictionary;
 import model.adt.MyIStack;
@@ -8,28 +9,21 @@ import model.type.BooleanType;
 import model.value.BooleanValue;
 import model.value.IValue;
 
-public class WhileStatement implements IStatement {
-   private IExpression expression;
-   private IStatement statement;
+public record WhileStatement(IExpression expression, IStatement statement) implements IStatement {
 
-   public WhileStatement(IExpression expression, IStatement statement) {
-      this.expression = expression;
-      this.statement = statement;
-   }
-
-   @Override
-   public ProgramState execute(ProgramState programState) {
-       IValue conditionValue = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap());
-       if (!(conditionValue.getType() instanceof BooleanType))
-           throw new InvalidTypeException();
-       BooleanValue conditionBoolValue = (BooleanValue) conditionValue;
-       if(conditionBoolValue.value()){
-           MyIStack<IStatement> stack = programState.getExeStack();
-           stack.push(this);
-           stack.push(statement);
-       }
-       return null;
-   }
+    @Override
+    public ProgramState execute(ProgramState programState) {
+        IValue conditionValue = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap());
+        if (!(conditionValue.getType() instanceof BooleanType))
+            throw new InvalidTypeException();
+        BooleanValue conditionBoolValue = (BooleanValue) conditionValue;
+        if (conditionBoolValue.value()) {
+            MyIStack<IStatement> stack = programState.getExeStack();
+            stack.push(this); //for next iteration
+            stack.push(statement); //body
+        }
+        return programState;
+    }
 
     @Override
     public IStatement deepCopy() {

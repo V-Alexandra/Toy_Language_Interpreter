@@ -1,13 +1,14 @@
 package model.adt;
 
+import exceptions.VariableNotDefinedException;
 import model.value.IValue;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class MyHeap<K,V> implements MyIHeap<K,V> {
-    private Map<Integer, IValue> heap;
+public class MyHeap<K, V> implements MyIHeap<K, V> {
+    private final Map<Integer, IValue> heap;
     private int freeLocation;
 
 
@@ -26,15 +27,15 @@ public class MyHeap<K,V> implements MyIHeap<K,V> {
     @Override
     public void update(int address, IValue value) {
         if (!this.isDefined(address))
-            throw new RuntimeException("Address not found in heap");
+            throw new VariableNotDefinedException();
         this.heap.put(address, value);
     }
 
 
     @Override
-    public IValue lookup(int address)  {
+    public IValue lookup(int address) {
         if (!this.isDefined(address))
-            throw new RuntimeException("Address not found in heap");
+            throw new VariableNotDefinedException();
         return this.heap.get(address);
     }
 
@@ -44,13 +45,17 @@ public class MyHeap<K,V> implements MyIHeap<K,V> {
     }
 
     @Override
-    public void remove(int address)  {
+    public void remove(int address) {
         this.heap.remove(address);
     }
 
     @Override
     public String toString() {
-        return this.heap.toString();
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<Integer, IValue> entry : heap.entrySet()) {
+            result.append(entry.getKey()).append("->").append(entry.getValue()).append("\n");
+        }
+        return result.toString().trim();
     }
 
     @Override
@@ -63,5 +68,6 @@ public class MyHeap<K,V> implements MyIHeap<K,V> {
         this.heap.clear();
         this.heap.putAll(newContent);
     }
+
 
 }

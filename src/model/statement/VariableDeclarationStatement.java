@@ -25,7 +25,6 @@ public record VariableDeclarationStatement(String name, IType type) implements I
 
     @Override
     public String toString() {
-        return String.format("%s %s", type.toString(), name);
+        return String.format("%s=(%s)", name, type.toString());
     }
-
 }
