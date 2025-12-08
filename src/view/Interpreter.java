@@ -11,12 +11,13 @@ import repository.IRepository;
 import repository.Repository;
 
 public class Interpreter {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         IStatement ex1 = new CompoundStatement(new VariableDeclarationStatement("v", new IntType()),
                 new CompoundStatement(new AssignmentStatement("v", new ValueExpression(new IntegerValue(2))),
                         new PrintStatement(new VariableExpression("v"))));
-        ProgramState prg1 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex1);
+        ProgramState prg1 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex1);
         IRepository repo1 = new Repository(prg1, "log1.txt");
         Controller controller1 = new Controller(repo1);
 
@@ -42,7 +43,8 @@ public class Interpreter {
                                                                         new ValueExpression(new IntegerValue(2)))),
                                                         new ValueExpression(new IntegerValue(7)))),
                                         new PrintStatement(new VariableExpression("b"))))));
-        ProgramState prg2 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex2);
+        ProgramState prg2 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex2);
         IRepository repo2 = new Repository(prg2, "log2.txt");
         Controller controller2 = new Controller(repo2);
 
@@ -54,7 +56,8 @@ public class Interpreter {
                                         new AssignmentStatement("v", new ValueExpression(new IntegerValue(2))),
                                         new AssignmentStatement("v", new ValueExpression(new IntegerValue(3)))),
                                         new PrintStatement(new VariableExpression("v"))))));
-        ProgramState prg3 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex3);
+        ProgramState prg3 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex3);
         IRepository repo3 = new Repository(prg3, "log3.txt");
         Controller controller3 = new Controller(repo3);
 
@@ -73,10 +76,13 @@ public class Interpreter {
                                                         new IfStatement(new RelationalExpression("<",
                                                                 new VariableExpression("a"),
                                                                 new VariableExpression("b")),
-                                                                new AssignmentStatement("max", new VariableExpression("b")),
-                                                                new AssignmentStatement("max", new VariableExpression("a"))),
+                                                                new AssignmentStatement("max",
+                                                                        new VariableExpression("b")),
+                                                                new AssignmentStatement("max",
+                                                                        new VariableExpression("a"))),
                                                         new PrintStatement(new VariableExpression("max"))))))));
-        ProgramState prg4 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex4);
+        ProgramState prg4 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex4);
         IRepository repo4 = new Repository(prg4, "log4.txt");
         Controller controller4 = new Controller(repo4);
 
@@ -94,11 +100,15 @@ public class Interpreter {
                                                 new CompoundStatement(
                                                         new PrintStatement(new VariableExpression("varc")),
                                                         new CompoundStatement(
-                                                                new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                                                                new ReadFileStatement(new VariableExpression("varf"),
+                                                                        "varc"),
                                                                 new CompoundStatement(
-                                                                        new PrintStatement(new VariableExpression("varc")),
-                                                                        new CloseRFileStatement(new VariableExpression("varf"))))))))));
-        ProgramState prg5 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex5);
+                                                                        new PrintStatement(
+                                                                                new VariableExpression("varc")),
+                                                                        new CloseRFileStatement(
+                                                                                new VariableExpression("varf"))))))))));
+        ProgramState prg5 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex5);
         IRepository repo5 = new Repository(prg5, "log5.txt");
         Controller controller5 = new Controller(repo5);
 
@@ -117,7 +127,8 @@ public class Interpreter {
                                         )
                                 )
                         )));
-        ProgramState prg6 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex6);
+        ProgramState prg6 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex6);
         IRepository repo6 = new Repository(prg6, "log6.txt");
         Controller controller6 = new Controller(repo6);
 
@@ -133,7 +144,8 @@ public class Interpreter {
                                         new PrintStatement(new ArithmeticExpression('+',
                                                 new ReadHeapExpression(new VariableExpression("v")),
                                                 new ValueExpression(new IntegerValue(5))))))));
-        ProgramState prg7 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex7);
+        ProgramState prg7 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex7);
         IRepository repo7 = new Repository(prg7, "log7.txt");
         Controller controller7 = new Controller(repo7);
 
@@ -147,12 +159,14 @@ public class Interpreter {
                                 new CompoundStatement(
                                         new HeapAllocationStatement("a", new VariableExpression("v")),
                                         new CompoundStatement(
-                                                new HeapAllocationStatement("v", new ValueExpression(new IntegerValue(30))),
+                                                new HeapAllocationStatement("v",
+                                                        new ValueExpression(new IntegerValue(30))),
                                                 new PrintStatement(
                                                         new ReadHeapExpression(
                                                                 new ReadHeapExpression(new VariableExpression("a"))
                                                         )))))));
-        ProgramState prg8 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex8);
+        ProgramState prg8 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex8);
         IRepository repo8 = new Repository(prg8, "log8.txt");
         Controller controller8 = new Controller(repo8);
 
@@ -163,7 +177,8 @@ public class Interpreter {
                         new AssignmentStatement("v", new ValueExpression(new IntegerValue(4))),
                         new CompoundStatement(
                                 new WhileStatement(
-                                        new RelationalExpression(">", new VariableExpression("v"), new ValueExpression(new IntegerValue(0))),
+                                        new RelationalExpression(">", new VariableExpression("v"),
+                                                new ValueExpression(new IntegerValue(0))),
                                         new CompoundStatement(
                                                 new PrintStatement(new VariableExpression("v")),
                                                 new AssignmentStatement("v", new ArithmeticExpression('-',
@@ -172,7 +187,8 @@ public class Interpreter {
                                 new PrintStatement(new VariableExpression("v"))
                         )
                 ));
-        ProgramState prg9 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex9);
+        ProgramState prg9 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex9);
         IRepository repo9 = new Repository(prg9, "log9.txt");
         Controller controller9 = new Controller(repo9);
 
@@ -186,19 +202,67 @@ public class Interpreter {
                                 new CompoundStatement(
                                         new HeapAllocationStatement("a", new ValueExpression(new IntegerValue(30))),
                                         new CompoundStatement(
-                                                new HeapAllocationStatement("v", new ValueExpression(new IntegerValue(40))),
+                                                new HeapAllocationStatement("v",
+                                                        new ValueExpression(new IntegerValue(40))),
                                                 new CompoundStatement(
-                                                        new PrintStatement(new ReadHeapExpression(new VariableExpression("v"))),
-                                                        new PrintStatement(new ReadHeapExpression(new VariableExpression("a")))
+                                                        new PrintStatement(
+                                                                new ReadHeapExpression(new VariableExpression("v"))),
+                                                        new PrintStatement(
+                                                                new ReadHeapExpression(new VariableExpression("a")))
                                                 )
                                         )
                                 )
                         )
                 )
         );
-        ProgramState prg10 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), new MyHeap<>(), ex10);
+        ProgramState prg10 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex10);
         IRepository repo10 = new Repository(prg10, "log10.txt");
         Controller controller10 = new Controller(repo10);
+
+        //11 int v; Ref int a; v=10; new(a,22); fork(wH(a,30);v=32;print(v);print(rH(a))); print(v);print(rH(a))
+        IStatement ex11 = new CompoundStatement(
+                new VariableDeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new VariableDeclarationStatement("a", new RefType(new IntType())),
+                        new CompoundStatement(
+                                new AssignmentStatement("v", new ValueExpression(new IntegerValue(10))),
+                                new CompoundStatement(
+                                        new HeapAllocationStatement("a", new ValueExpression(new IntegerValue(22))),
+                                        new CompoundStatement(
+                                                new ForkStatement(
+                                                        new CompoundStatement(
+                                                                new WriteHeapStatement("a",
+                                                                        new ValueExpression(new IntegerValue(30))),
+                                                                new CompoundStatement(
+                                                                        new AssignmentStatement("v",
+                                                                                new ValueExpression(
+                                                                                        new IntegerValue(32))),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(
+                                                                                        new VariableExpression("v")),
+                                                                                new PrintStatement(
+                                                                                        new ReadHeapExpression(
+                                                                                                new VariableExpression(
+                                                                                                        "a")))
+                                                                        )
+                                                                )
+                                                        )
+                                                ),
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VariableExpression("v")),
+                                                        new PrintStatement(
+                                                                new ReadHeapExpression(new VariableExpression("a")))
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        ProgramState prg11 = new ProgramState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), new MyHeap<>(), ex11);
+        IRepository repo11 = new Repository(prg11, "log11.txt");
+        Controller controller11 = new Controller(repo11);
 
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
@@ -212,6 +276,7 @@ public class Interpreter {
         menu.addCommand(new RunExample("8", ex8.toString(), controller8));
         menu.addCommand(new RunExample("9", ex9.toString(), controller9));
         menu.addCommand(new RunExample("10", ex10.toString(), controller10));
+        menu.addCommand(new RunExample("11", ex11.toString(), controller11));
 
         menu.show();
     }

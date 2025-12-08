@@ -12,14 +12,15 @@ public record IfStatement(IExpression expression, IStatement thenStatement,
                           IStatement elseStatement) implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) {
-        IValue result = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap());
+        IValue result = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(),
+                programState.getHeap());
         if (!(result instanceof BooleanValue(boolean boolVal)))
             throw new InvalidTypeException();
         IStatement chosenStatement = boolVal ? thenStatement : elseStatement;
         MyIStack<IStatement> stack = programState.getExeStack();
         stack.push(chosenStatement);
         programState.setExeStack(stack);
-        return programState;
+        return null;
     }
 
     @Override
@@ -29,6 +30,7 @@ public record IfStatement(IExpression expression, IStatement thenStatement,
 
     @Override
     public String toString() {
-        return String.format("if(%s){%s}else{%s}", expression.toString(), thenStatement.toString(), elseStatement.toString());
+        return String.format("if(%s){%s}else{%s}", expression.toString(), thenStatement.toString(),
+                elseStatement.toString());
     }
 }

@@ -1,5 +1,6 @@
 package model.program_state;
 
+import exceptions.StackIsEmptyException;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
 import model.adt.MyIList;
@@ -18,6 +19,15 @@ public class ProgramState {
     private IStatement originalProgram;
     private MyIHeap heap;
 
+    private final int id;
+    private static int lastId = 0;
+    private static synchronized int newProgramStateId() {
+        lastId++;
+        return lastId;
+    }
+    public int getId() {
+        return id;
+    }
     public ProgramState(MyIStack<IStatement> exeStack, MyIDictionary<String, IValue> symTable, MyIList<IValue> out, MyIDictionary<String, BufferedReader> fileTable, MyIHeap heap, IStatement originalProgram) {
         this.exeStack = exeStack;
         this.symTable = symTable;
@@ -26,6 +36,27 @@ public class ProgramState {
         this.originalProgram = originalProgram.deepCopy();
         this.heap = heap;
         this.exeStack.push(originalProgram);
+        this.id = newProgramStateId();
+    }
+
+    public ProgramState(MyIStack<IStatement> exeStack, MyIDictionary<String, IValue> symTable, MyIList<IValue> out, MyIDictionary<String, BufferedReader> fileTable, MyIHeap heap) {
+        this.exeStack = exeStack;
+        this.symTable = symTable;
+        this.out = out;
+        this.fileTable = fileTable;
+        this.heap = heap;
+        this.id = newProgramStateId();
+    }
+    public boolean isNotCompleted() {
+        return !exeStack.isEmpty();
+    }
+
+    public ProgramState oneStep() {
+        if(exeStack.isEmpty())
+            throw new StackIsEmptyException();
+        IStatement currentStatement = exeStack.pop();
+        return currentStatement.execute(this);
+
     }
 
     public MyIDictionary<String, BufferedReader> getFileTable() {
@@ -80,8 +111,15 @@ public class ProgramState {
         return heap;
     }
     @Override
-    public String toString() {
-        return "Execution Stack:\n" + exeStack.toString() + "\nSymbol Table:\n" + symTable.toString() + "\nHeap:\n" + heap.toString() + "\nOutput List:\n" + out.toString() + "\nFile Table:\n" + fileTable.toString() + "\n";
+    public String toString(){
+        String str = "Program state\n" +
+                "Id: "+id+"\n"+
+                "Exe Stack: " + exeStack.toString() + " \n" +
+                "Sym Table: " + symTable + " \n" +
+                "File Table: " + fileTable + "\n" +
+                "Heap Table: " + heap.toString() + "\n" +
+                "Output Console: " + out + " \n";
+        return str;
     }
 
 }

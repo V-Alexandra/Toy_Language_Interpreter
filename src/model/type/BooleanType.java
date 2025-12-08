@@ -11,13 +11,14 @@ public class BooleanType implements IType {
 
     @Override
     public IType deepCopy() {
-        return  new BooleanType();
+        return new BooleanType();
     }
 
     @Override
     public boolean equals(Object obj) {
         return obj instanceof BooleanType;
     }
+
     @Override
     public String toString() {
         return "boolean";

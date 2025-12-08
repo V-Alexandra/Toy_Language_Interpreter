@@ -17,14 +17,18 @@ public record WriteHeapStatement(String variableName, IExpression expression) im
     public ProgramState execute(ProgramState programState) {
         int address = getAddress(programState);
 
-        IValue newVal = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap());
-        IValue heapValue = programState.getHeap().lookup(address);
-        if (!newVal.getType().equals(heapValue.getType())) {
+        IValue newVal = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(),
+                programState.getHeap());
+        IValue heapValue = programState.getHeap()
+                .lookup(address);
+        if (!newVal.getType()
+                .equals(heapValue.getType())) {
             throw new InvalidTypeException();
         }
 
-        programState.getHeap().update(address, newVal);
-        return programState;
+        programState.getHeap()
+                .update(address, newVal);
+        return null;
     }
 
     private int getAddress(ProgramState programState) {

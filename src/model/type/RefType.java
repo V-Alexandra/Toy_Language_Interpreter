@@ -5,11 +5,14 @@ import model.value.RefValue;
 
 public class RefType implements IType {
     private final IType innerType;
+
     public RefType(IType innerType) {
         this.innerType = innerType;
     }
-    public IType getInnerType() {return innerType;}
 
+    public IType getInnerType() {
+        return innerType;
+    }
 
     @Override
     public IValue getDefaultValue() {
@@ -22,8 +25,8 @@ public class RefType implements IType {
     }
 
     @Override
-    public boolean equals(Object other){
-        return other instanceof RefType && this.innerType.equals(((RefType)other).innerType);
+    public boolean equals(Object other) {
+        return other instanceof RefType && this.innerType.equals(((RefType) other).innerType);
     }
 
     @Override

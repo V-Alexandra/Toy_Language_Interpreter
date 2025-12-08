@@ -31,6 +31,11 @@ public class MyStack<T> implements MyIStack<T> {
 
     @Override
     public String toString() {
-        return this.stack.toString();
+        String str = "\n";
+        for (int i = stack.size() - 1; i >= 0; i--)
+            str += stack.get(i)
+                    .toString() + "\n";
+        return str;
     }
 }
+

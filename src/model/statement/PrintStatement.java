@@ -16,9 +16,10 @@ public class PrintStatement implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) {
         MyIList<IValue> out = programState.getOut();
-        out.add(expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap())); //error
+        out.add(expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(),
+                programState.getHeap()));
         programState.setOut(out);
-        return programState;
+        return null;
     }
 
     @Override

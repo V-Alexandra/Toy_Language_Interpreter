@@ -13,7 +13,8 @@ public record WhileStatement(IExpression expression, IStatement statement) imple
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        IValue conditionValue = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap());
+        IValue conditionValue = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(),
+                programState.getHeap());
         if (!(conditionValue.getType() instanceof BooleanType))
             throw new InvalidTypeException();
         BooleanValue conditionBoolValue = (BooleanValue) conditionValue;
@@ -22,7 +23,7 @@ public record WhileStatement(IExpression expression, IStatement statement) imple
             stack.push(this); //for next iteration
             stack.push(statement); //body
         }
-        return programState;
+        return null;
     }
 
     @Override

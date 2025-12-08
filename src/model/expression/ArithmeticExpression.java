@@ -13,7 +13,8 @@ public record ArithmeticExpression(char operator, IExpression leftOperand,
 
 
     @Override
-    public IValue evaluate(MyDictionary<String, IValue> symbolTable, MyIHeap heap) throws InvalidTypeException, DivisionByZeroException, UnknownOperatorException {
+    public IValue evaluate(MyDictionary<String, IValue> symbolTable, MyIHeap heap) throws InvalidTypeException,
+            DivisionByZeroException, UnknownOperatorException {
         IValue leftValue, rightValue;
 
         leftValue = leftOperand.evaluate(symbolTable, heap);

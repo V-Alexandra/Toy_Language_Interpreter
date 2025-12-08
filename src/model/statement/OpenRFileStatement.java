@@ -15,29 +15,33 @@ import java.io.FileReader;
 public record OpenRFileStatement(IExpression expression) implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) {
-        var value = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap());
-        if (!value.getType().equals(new StringType()))
+        var value = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(),
+                programState.getHeap());
+        if (!value.getType()
+                .equals(new StringType()))
             throw new InvalidTypeException();
         String filename = value.toString();
 
         var filetable = programState.getFileTable();
-        if(filetable.containsKey(filename))
+        if (filetable.containsKey(filename))
             throw new FileAlreadyOpenException();
 
-        try{
+        try {
             var bufferedReader = new BufferedReader(new FileReader(filename));
-            programState.getFileTable().put(filename, bufferedReader);
+            programState.getFileTable()
+                    .put(filename, bufferedReader);
         } catch (FileNotFoundException e) {
             throw new exceptions.FileNotFoundException();
         }
 
-        return programState;
+        return null;
     }
 
     @Override
     public IStatement deepCopy() {
         return new OpenRFileStatement(expression.deepCopy());
     }
+
     @Override
     public String toString() {
         return String.format("OpenRFile(%s)", expression.toString());

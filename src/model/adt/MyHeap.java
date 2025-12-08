@@ -50,12 +50,13 @@ public class MyHeap<K, V> implements MyIHeap<K, V> {
     }
 
     @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        for (Map.Entry<Integer, IValue> entry : heap.entrySet()) {
-            result.append(entry.getKey()).append("->").append(entry.getValue()).append("\n");
+    public String toString(){
+        String str="{";
+        for(Integer key :heap.keySet()){
+            str+=key.toString() + "->" + heap.get(key).toString() + "; ";
         }
-        return result.toString().trim();
+        str+="}";
+        return str;
     }
 
     @Override
