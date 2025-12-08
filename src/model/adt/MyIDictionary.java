@@ -23,4 +23,6 @@ public interface MyIDictionary<T1, T2> {
     T2 lookup(T1 key) throws KeyNotFoundException;
 
     void update(T1 key, T2 value) throws KeyNotFoundException;
+
+    MyIDictionary<T1, T2> clone();
 }

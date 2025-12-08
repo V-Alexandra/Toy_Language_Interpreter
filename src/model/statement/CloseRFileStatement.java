@@ -17,21 +17,25 @@ public record CloseRFileStatement(IExpression expression) implements IStatement 
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        var value = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(), programState.getHeap());
-        if (!value.getType().equals(new StringType()))
+        var value = expression.evaluate((MyDictionary<String, IValue>) programState.getSymTable(),
+                programState.getHeap());
+        if (!value.getType()
+                .equals(new StringType()))
             throw new InvalidTypeException();
         String filename = value.toString();
         try {
-            BufferedReader file = programState.getFileTable().get(filename);
+            BufferedReader file = programState.getFileTable()
+                    .get(filename);
             file.close();
-            programState.getFileTable().remove(filename);
+            programState.getFileTable()
+                    .remove(filename);
 
         } catch (IOException e) {
             throw new ErrorFileCloseException();
         } catch (KeyNotFoundException e) {
             throw new FileNotFoundException();
         }
-        return programState;
+        return null;
     }
 
     @Override

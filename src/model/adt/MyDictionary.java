@@ -59,6 +59,14 @@ public class MyDictionary<T1, T2> implements MyIDictionary<T1, T2> {
     }
 
     @Override
+    public MyIDictionary<T1, T2> clone() {
+        MyIDictionary<T1, T2> newDict = new MyDictionary<>();
+        for(T1 key : dictionary.keySet())
+            newDict.update(key, dictionary.get(key));
+        return newDict;
+    }
+
+    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (Map.Entry<T1, T2> entry : dictionary.entrySet()) {

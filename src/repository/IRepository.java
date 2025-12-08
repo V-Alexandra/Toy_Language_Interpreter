@@ -10,11 +10,7 @@ public interface IRepository {
 
     void addProgram(ProgramState programState);
 
-    ProgramState getCurrentState();
-
     void setProgramStates(List<ProgramState> programStates);
 
     void logProgramStateExecution(ProgramState programState) throws IOException;
-
-    void emptyLogFile() throws IOException;
 }

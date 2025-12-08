@@ -15,7 +15,7 @@ public record VariableDeclarationStatement(String name, IType type) implements I
         }
         symTable.put(name, type.getDefaultValue());
         programState.setSymTable(symTable);
-        return programState;
+        return null;
     }
 
     @Override

@@ -35,14 +35,15 @@ public record HeapAllocationStatement(String variableName, IExpression expressio
             throw new RuntimeException(e);
         }
 
-        if (!expValue.getType().equals(innerType)) {
+        if (!expValue.getType()
+                .equals(innerType)) {
             throw new VariableNotDefinedException();
         }
         //alocate a new address on the heap and store the expValue and return the new address
         int newAddress = heap.add(expValue);
         symTable.update(variableName, new RefValue(newAddress, innerType));
 
-        return programState;
+        return null;
     }
 
     @Override

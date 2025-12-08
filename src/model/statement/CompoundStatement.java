@@ -10,7 +10,7 @@ public record CompoundStatement(IStatement firstStatement, IStatement secondStat
         stack.push(secondStatement);
         stack.push(firstStatement);
         programState.setExeStack(stack);
-        return programState;
+        return null;
     }
 
     @Override

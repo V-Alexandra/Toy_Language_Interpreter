@@ -18,7 +18,6 @@ public record StringValue(String value) implements IValue {
         return Objects.equals(value, value1);
     }
 
-
     @Override
     public IType getType() {
         return new StringType();

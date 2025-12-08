@@ -31,21 +31,17 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public ProgramState getCurrentState() {
-        return this.programStates.get(0);
-    }
-
-    @Override
     public void setProgramStates(List<ProgramState> programStates) {
         this.programStates = programStates;
     }
 
     @Override
     public void logProgramStateExecution(ProgramState programState) throws IOException {
-        PrintWriter logFile;
-        logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));
-        logFile.println(this.programStates.get(0).toString());
-        logFile.close();
+        try (PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)))) {
+            logFile.println(programState.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @Override

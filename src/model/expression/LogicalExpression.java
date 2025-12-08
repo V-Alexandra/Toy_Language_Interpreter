@@ -19,7 +19,8 @@ public class LogicalExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(MyDictionary<String, IValue> symbolTable, MyIHeap heap) throws InvalidTypeException, UnknownOperatorException{
+    public IValue evaluate(MyDictionary<String, IValue> symbolTable, MyIHeap heap) throws InvalidTypeException,
+            UnknownOperatorException {
         IValue leftValue, rightValue;
         leftValue = leftOperand.evaluate(symbolTable, heap);
         if (!(leftValue instanceof BooleanValue(boolean leftBool)))

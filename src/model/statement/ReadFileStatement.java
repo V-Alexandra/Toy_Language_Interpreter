@@ -23,40 +23,46 @@ public record ReadFileStatement(IExpression expression, String variableName) imp
         if (!symTable.containsKey(variableName)) {
             throw new VariableNotDefinedException();
         }
-        if(!symTable.get(variableName).getType().equals(new IntType()))
+        if (!symTable.get(variableName)
+                .getType()
+                .equals(new IntType()))
             throw new InvalidTypeException();
         var result = expression.evaluate((MyDictionary<String, IValue>) symTable, programState.getHeap());
-        if(!result.getType().equals(new StringType()))
+        if (!result.getType()
+                .equals(new StringType()))
             throw new InvalidTypeException();
         String filename = result.toString();
-        if(!programState.getFileTable().containsKey(filename))
+        if (!programState.getFileTable()
+                .containsKey(filename))
             throw new FileNotFoundException();
 
-        BufferedReader file = programState.getFileTable().get(filename);
-        try{
+        BufferedReader file = programState.getFileTable()
+                .get(filename);
+        try {
             String line = file.readLine();
             if (line == null) {
-                // End of file reached - set variable to default value 0
-                programState.getSymTable().put(variableName, new IntegerValue(0));
+                programState.getSymTable()
+                        .put(variableName, new IntegerValue(0));
             } else {
                 int value = Integer.parseInt(line);
                 IntegerValue intValue = new IntegerValue(value);
-                programState.getSymTable().put(variableName, intValue);
+                programState.getSymTable()
+                        .put(variableName, intValue);
             }
 
         } catch (IOException e) {
             throw new ErrorReadingFileException();
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new NotNumberException();
         }
-        return programState;
+        return null;
     }
 
     @Override
     public IStatement deepCopy() {
         return new ReadFileStatement(expression.deepCopy(), variableName);
     }
+
     @Override
     public String toString() {
         return String.format("ReadFile(%s, %s)", expression.toString(), variableName);

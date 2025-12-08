@@ -13,7 +13,8 @@ public record ReadHeapExpression(IExpression expression) implements IExpression 
         IValue value = expression.evaluate(symbolTable, heap);
         if (!(value.getType() instanceof RefType))
             throw new InvalidTypeException();
-    return (IValue) heap.getContent().get(((RefValue) value).getAddress());
+        return (IValue) heap.getContent()
+                .get(((RefValue) value).getAddress());
     }
 
     @Override

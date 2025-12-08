@@ -8,7 +8,7 @@ public abstract class Command {
         this.description = description;
     }
 
-    public abstract void execute();
+    public abstract void execute() throws InterruptedException;
 
     public String getKey() {
         return key;
